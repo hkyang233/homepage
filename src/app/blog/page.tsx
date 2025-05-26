@@ -12,6 +12,7 @@ interface Post {
   created: number
   author: { screenName: string }
   tag?: { name: string }[]
+  directory?: string
 }
 
 const PAGE_SIZE = 10

@@ -19,6 +19,7 @@ interface Post {
   created: number
   author: { screenName: string }
   tag?: { name: string }[]
+  directory?: string
 }
 
 interface Comment {
