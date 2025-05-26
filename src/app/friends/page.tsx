@@ -15,9 +15,9 @@ interface Friend {
 const friends: Friend[] = [
   {
     name: "Friend 1",
-    url: "https://subilan.win",
+    url: "https://example1.com",
     description: "分享编程和生活的博客",
-    avatar: "https://fnmdp.oss-cn-beijing.aliyuncs.com/assets/avatar.png",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Friend1",
     color: "#009688"
   },
   {
