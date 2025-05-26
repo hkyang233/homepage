@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+这是我的个人主页项目，基于 [Next.js](https://nextjs.org/) + React 19 + Tailwind CSS + Shadcn/ui，Blog部分使用 [Typecho Api]()二次开发而成。
 
-## Getting Started
+## ✨ 主要特性
 
-First, run the development server:
+- 现代扁平化设计，极简美观
+- 响应式布局，移动端友好
+- SEO 优化，字体预加载
+- 支持深色模式，平滑切换
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 快速开始
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. 安装依赖
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   ```bash
+   npm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. 启动开发环境
 
-## Learn More
+   ```bash
+   npm run dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. 访问 [http://localhost:3000](http://localhost:3000)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📝 目录结构
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `/src/app`：页面与路由
+- `/src/components`：UI 组件
+- `/public`：静态资源（如头像等）
 
-## Deploy on Vercel
+## 🖼️ 效果预览
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![screenshot](public/screenshot.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📖 相关链接
+
+- [myblog](https://hkyang233.com)
+- [Shadcn/ui](https://ui.shadcn.com/)
+- [Next.js](https://nextjs.org/)
+
+## 📄 License
+
+[Apache-2.0](LICENSE)
