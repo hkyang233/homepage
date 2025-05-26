@@ -4,9 +4,9 @@
 [![Next.js](https://img.shields.io/badge/Next.js-19-blue?logo=next.js&logoColor=white&style=flat-square)](https://nextjs.org/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38bdf8?logo=tailwindcss&logoColor=white&style=flat-square)](https://tailwindcss.com/)
 [![React](https://img.shields.io/badge/React-19-61dafb?logo=react&logoColor=white&style=flat-square)](https://react.dev/)
-[![Typecho API](https://img.shields.io/badge/Typecho-API-orange?style=flat-square)](https://typecho.org/)
+[![Typecho API](https://img.shields.io/badge/Typecho-API-orange?style=flat-square)](https://github.com/st1ven/typecho-api)
 
-这是我的个人主页项目，基于 [Next.js](https://nextjs.org/) + React 19 + Tailwind CSS + Shadcn/ui，Blog部分使用 [Typecho Api]()二次开发而成。
+这是我的个人主页项目，基于 [Next.js](https://nextjs.org/) + React 19 + Tailwind CSS + Shadcn/ui，Blog部分使用 [Typecho Api](https://github.com/st1ven/typecho-api)二次开发而成。
 
 ---
 
