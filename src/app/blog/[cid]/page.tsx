@@ -6,6 +6,11 @@ import { Navbar } from '@/components/navbar'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import ClickFeedback from '@/components/click-feedback'
+import dynamic from "next/dynamic"
+import ReactMarkdown from "react-markdown"
+import rehypeHighlight from "rehype-highlight"
+import remarkGfm from "remark-gfm"
+import "highlight.js/styles/github-dark.css"
 
 interface Post {
   cid: number
@@ -23,6 +28,8 @@ interface Comment {
   created: number
 }
 
+const MarkdownRender = dynamic(() => import('@/components/MarkdownRender'), { ssr: false })
+
 export default function BlogDetailPage() {
   const { cid } = useParams() as { cid: string }
   const [post, setPost] = useState<Post | null>(null)
@@ -33,8 +40,8 @@ export default function BlogDetailPage() {
 
   useEffect(() => {
     Promise.all([
-      fetch(`http://127.0.0.1:2020/api/post?cid=${cid}`).then(res => res.json()),
-      fetch(`http://127.0.0.1:2020/api/commentsByCid?cid=${cid}`).then(res => res.json())
+      fetch(`https://blog.kaeshi.top/api/post?cid=${cid}`).then(res => res.json()),
+      fetch(`https://blog.kaeshi.top/api/commentsByCid?cid=${cid}`).then(res => res.json())
     ]).then(([postData, commentsData]) => {
       const postRaw = postData.data
       const post = postRaw
@@ -77,13 +84,15 @@ export default function BlogDetailPage() {
             <div className="flex flex-wrap gap-2 items-center text-xs text-muted-foreground mb-2">
               <span>{new Date(post.created * 1000).toLocaleDateString()}</span>
               <span>·</span>
-              <span>by {post.author.screenName}</span>
+              <span>by Yang</span>
+              <span>·</span>
+              <span>{post.directory}</span>
               <span>·</span>
               <span>{getReadTime(post.text)} 分钟阅读</span>
             </div>
           </div>
-          <div className="prose prose-neutral dark:prose-invert max-w-none mb-10 text-base leading-relaxed">
-            <div dangerouslySetInnerHTML={{ __html: post.text }} />
+          <div className="mb-10">
+            <MarkdownRender content={post.text} />
           </div>
           <section className="mt-12">
             <h2 className="text-2xl font-bold mb-4">评论</h2>
@@ -96,7 +105,7 @@ export default function BlogDetailPage() {
                   onSubmit={async (e) => {
                     e.preventDefault()
                     setSubmitting(true)
-                    await fetch('http://127.0.0.1:2020/api-comment.php', {
+                    await fetch('https://blog.kaeshi.top/api-comment.php', {
                       method: 'POST',
                       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                       body: new URLSearchParams({
@@ -108,7 +117,7 @@ export default function BlogDetailPage() {
                     })
                     setCommentForm({ author: '', mail: '', text: '' })
                     // 重新加载评论
-                    fetch(`http://127.0.0.1:2020/api/commentsByCid?cid=${cid}`)
+                    fetch(`https://blog.kaeshi.top/api/commentsByCid?cid=${cid}`)
                       .then(res => res.json())
                       .then(data => setComments((Array.isArray(data.data) ? data.data : []).map((c: any) => ({ ...c, created: Number(c.created) }))))
                     setSubmitting(false)

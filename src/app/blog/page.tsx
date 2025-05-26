@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import { Navbar } from "@/components/navbar"
 import { motion, useInView } from 'framer-motion'
+import LoadingSpinner from "@/components/loading-spinner"
 
 interface Post {
   cid: number
@@ -23,9 +24,11 @@ export default function BlogListPage() {
   const containerRef = useRef(null)
   const isInView = useInView(containerRef, { once: true })
 
+  // 假设后端返回总数（如 data.total），否则可用 hasMore 逻辑估算最大页数
+  const [total, setTotal] = useState(0)
   useEffect(() => {
     setLoading(true)
-    fetch(`http://127.0.0.1:2020/api/posts?page=${page}&pageSize=${PAGE_SIZE}`)
+    fetch(`https://blog.kaeshi.top/api/posts?page=${page}&pageSize=${PAGE_SIZE}`)
       .then(res => res.json())
       .then(data => {
         const newPosts = (data.data || []).map((item: any) => ({
@@ -36,8 +39,60 @@ export default function BlogListPage() {
         setPosts(prev => page === 1 ? newPosts : [...prev, ...newPosts])
         setHasMore(newPosts.length === PAGE_SIZE)
         setLoading(false)
+        // 如果后端有 total 字段
+        if (typeof data.total === 'number') setTotal(data.total)
       })
   }, [page])
+
+  // 计算最大页数
+  const maxPage = total ? Math.ceil(total / PAGE_SIZE) : (hasMore ? page + 1 : page)
+
+  // 页码渲染（最多显示5个页码，前后省略号）
+  const renderPagination = () => {
+    if (maxPage <= 1) return null
+    let pages: (number | string)[] = []
+    if (maxPage <= 5) {
+      pages = Array.from({ length: maxPage }, (_, i) => i + 1)
+    } else {
+      if (page <= 3) {
+        pages = [1, 2, 3, 4, '...', maxPage]
+      } else if (page >= maxPage - 2) {
+        pages = [1, '...', maxPage - 3, maxPage - 2, maxPage - 1, maxPage]
+      } else {
+        pages = [1, '...', page - 1, page, page + 1, '...', maxPage]
+      }
+    }
+    return (
+      <div className="flex justify-center items-center gap-2 mt-8 select-none">
+        <button
+          className="px-3 py-1 rounded border text-sm bg-white dark:bg-zinc-900 hover:bg-primary/10 transition disabled:opacity-50"
+          disabled={page === 1}
+          onClick={() => setPage(p => Math.max(1, p - 1))}
+        >上一页</button>
+        {pages.map((p, i) =>
+          typeof p === 'number' ? (
+            <button
+              key={p}
+              className={`px-3 py-1 rounded border text-sm transition
+                ${p === page
+                  ? 'bg-primary text-white border-primary'
+                  : 'bg-white dark:bg-zinc-900 hover:bg-primary/10 border'}
+              `}
+              onClick={() => setPage(p)}
+              disabled={p === page}
+            >{p}</button>
+          ) : (
+            <span key={i} className="px-2 text-muted-foreground">...</span>
+          )
+        )}
+        <button
+          className="px-3 py-1 rounded border text-sm bg-white dark:bg-zinc-900 hover:bg-primary/10 transition disabled:opacity-50"
+          disabled={page === maxPage || !hasMore}
+          onClick={() => setPage(p => p + 1)}
+        >下一页</button>
+      </div>
+    )
+  }
 
   // 计算阅读时长
   const getReadTime = (text: string) => {
@@ -57,49 +112,45 @@ export default function BlogListPage() {
             </p>
           </div>
           <div ref={containerRef} className="flex flex-col gap-6">
-            {posts.map((post, idx) => (
-              <motion.div
-                key={post.cid}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: idx * 0.06, ease: [0.4, 0, 0.2, 1] }}
-                whileHover={{ y: -4, boxShadow: '0 4px 24px 0 rgba(0,0,0,0.08)' }}
-                className="group bg-card rounded-lg border shadow-sm px-6 py-5 transition-all duration-200 cursor-pointer"
-              >
-                <div className="flex flex-wrap gap-2 mb-2">
-                  {post.tag && post.tag.map((t, i) => (
-                    <span key={i} className="px-2 py-0.5 rounded bg-primary/10 text-primary text-xs">{t.name}</span>
-                  ))}
-                </div>
-                <Link href={`/blog/${post.cid}`}>
-                  <h2 className="text-xl font-bold mb-1 group-hover:text-primary group-hover:underline transition-colors">
-                    {post.title}
-                  </h2>
-                </Link>
-                <div className="flex flex-wrap gap-2 items-center text-xs text-muted-foreground mb-2">
-                  <span>{new Date(post.created * 1000).toLocaleDateString()}</span>
-                  <span>·</span>
-                  <span>by {post.author.screenName}</span>
-                  <span>·</span>
-                  <span>{getReadTime(post.text)} 分钟阅读</span>
-                </div>
-                <p className="text-sm text-muted-foreground line-clamp-2">
-                  {post.text.replace(/<[^>]+>/g, '').slice(0, 80)}...
-                </p>
-              </motion.div>
-            ))}
+            {loading ? (
+              <LoadingSpinner />
+            ) : (
+              posts.map((post, idx) => (
+                <motion.div
+                  key={post.cid}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: idx * 0.06, ease: [0.4, 0, 0.2, 1] }}
+                  whileHover={{ y: -4, boxShadow: '0 4px 24px 0 rgba(0,0,0,0.08)' }}
+                  className="group bg-card rounded-lg border shadow-sm px-6 py-5 transition-all duration-200 cursor-pointer"
+                >
+                  <div className="flex flex-wrap gap-2 mb-2">
+                    {post.tag && post.tag.map((t, i) => (
+                      <span key={i} className="px-2 py-0.5 rounded bg-primary/10 text-primary text-xs">{t.name}</span>
+                    ))}
+                  </div>
+                  <Link href={`/blog/${post.cid}`}>
+                    <h2 className="text-xl font-bold mb-1 group-hover:text-primary group-hover:underline transition-colors">
+                      {post.title}
+                    </h2>
+                  </Link>
+                  <div className="flex flex-wrap gap-2 items-center text-xs text-muted-foreground mb-2">
+                    <span>{new Date(post.created * 1000).toLocaleDateString()}</span>
+                    <span>·</span>
+                    <span>by {post.author.screenName}</span>
+                    <span>·</span>
+                    <span>{post.directory}</span>
+                    <span>·</span>
+                    <span>{getReadTime(post.text)} 分钟阅读</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground line-clamp-2">
+                    {post.text.replace(/<[^>]+>/g, '').slice(0, 80)}...
+                  </p>
+                </motion.div>
+              ))
+            )}
           </div>
-          {hasMore && (
-            <div className="flex justify-center mt-8">
-              <button
-                onClick={() => setPage(p => p + 1)}
-                disabled={loading}
-                className="px-6 py-2 rounded bg-primary text-white hover:bg-primary/90 transition text-base"
-              >
-                {loading ? '加载中...' : '加载更多'}
-              </button>
-            </div>
-          )}
+          {renderPagination()}
         </section>
       </main>
       <footer className="border-t py-6 md:py-0">

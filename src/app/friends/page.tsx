@@ -14,20 +14,47 @@ interface Friend {
 
 const friends: Friend[] = [
   {
-    name: "Friend 1",
-    url: "https://example1.com",
-    description: "分享编程和生活的博客",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Friend1",
+    name: "9527's Blog",
+    url: "https://9527dhx.top/",
+    description: "永远相信美好的事情即将发生",
+    avatar: "https://q.qlogo.cn/g?b=qq&nk=2548635484&s=100",
+    color: "#346c9c"
+  },
+  {
+    name: "布丁の小窝",
+    url: "https://www.furryowo.top/",
+    description: "一个有梦想的咸鱼",
+    avatar: "https://dn-qiniu-avatar.qbox.me/avatar/7da7e82f04de94c795db0301c3397bb6?",
+    color: "#fcc307"
+  },
+  {
+    name: "小丁的屋舍",
+    url: "https://xding.top/",
+    description: "https://xding.top/face.png",
+    avatar: "https://xding.top/face.png",
     color: "#009688"
   },
   {
-    name: "Friend 2",
-    url: "https://example2.com",
-    description: "分享编程和生活的博客",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Friend2",
-    color: "#6b7280"
+    name: "fly6022",
+    url: "https://fly6022.fun/",
+    description: "Salvation lies within.",
+    avatar: "https://imageurl.fly6022.fun/images/logo.png",
+    color: "#8bbdec"
   },
-  // 添加更多友链
+  {
+    name: "GoodBoyboy's Blog",
+    url: "https://blog.goodboyboy.top/",
+    description: "惬意小屋 - 点滴记忆",
+    avatar: "https://gravatar.goodboyboy.top/avatar/9da9d1d515d273d4794015f2321f6e04?s=96&d=monsterid&r=g",
+    color: "#66c18c"
+  },
+  {
+    name: "添加友链",
+    url: "/friends/add",
+    description: "点我添加友链",
+    avatar: "https://q.qlogo.cn/g?b=qq&nk=2958445350&s=100",
+    color: "#000000"
+  }
 ]
 
 export default function FriendsPage() {
