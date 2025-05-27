@@ -11,6 +11,7 @@ import ReactMarkdown from "react-markdown"
 import rehypeHighlight from "rehype-highlight"
 import remarkGfm from "remark-gfm"
 import "highlight.js/styles/github-dark.css"
+import LoadingSpinner from '@/components/loading-spinner'
 
 interface Post {
   cid: number
@@ -67,7 +68,7 @@ export default function BlogDetailPage() {
     return Math.max(1, Math.round(words / 300))
   }
 
-  if (loading) return <div className="text-center py-10">加载中...</div>
+  if (loading) return <LoadingSpinner />
   if (!post) return <div className="text-center py-10">文章不存在或数据结构不符</div>
 
   return (

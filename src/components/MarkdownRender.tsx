@@ -4,25 +4,6 @@ import rehypeHighlight from "rehype-highlight"
 import remarkGfm from "remark-gfm"
 import "highlight.js/styles/github-dark.css"
 
-// 处理自定义短代码
-function preprocessMarkdown(md: string) {
-  return md.replace(/\[scode\s+type="(.*?)"(?:\s+size=".*?")?\](.*?)\[\/scode\]/gs, '<scode type="$1">$2</scode>')
-}
-
-// 自定义 <scode> 渲染
-function Scode({ node, ...props }: any) {
-  const type = node?.properties?.type || "default"
-  let color = "bg-gray-100 text-gray-800 border-l-4 border-gray-400"
-  if (type === "red") color = "bg-red-100 text-red-800 border-l-4 border-red-400"
-  if (type === "green") color = "bg-green-100 text-green-800 border-l-4 border-green-400"
-  if (type === "blue") color = "bg-blue-100 text-blue-800 border-l-4 border-blue-400"
-  return (
-    <div className={`my-4 p-3 rounded ${color}`}>
-      {props.children}
-    </div>
-  )
-}
-
 export default function MarkdownRender({ content }: { content: string }) {
   return (
     <div className="prose prose-lg max-w-none dark:prose-invert prose-img:rounded-xl prose-img:mx-auto prose-img:shadow-lg prose-img:max-w-[90%]">
@@ -30,7 +11,6 @@ export default function MarkdownRender({ content }: { content: string }) {
         rehypePlugins={[rehypeHighlight]}
         remarkPlugins={[remarkGfm]}
         components={{
-          scode: Scode,
           img: ({node, ...props}) => (
             <img
               {...props}
@@ -54,7 +34,7 @@ export default function MarkdownRender({ content }: { content: string }) {
           ),
         }}
       >
-        {preprocessMarkdown(content)}
+        {content}
       </ReactMarkdown>
       <style jsx global>{`
         .hljs, .prose pre, .prose pre code {
