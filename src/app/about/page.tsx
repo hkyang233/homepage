@@ -1,5 +1,6 @@
 'use client'
 import { Navbar } from '@/components/navbar'
+import { Badge } from '@/components/ui/badge'
 
 export default function AboutPage() {
   return (
@@ -18,6 +19,13 @@ export default function AboutPage() {
           <div className="relative overflow-hidden rounded-lg border bg-background p-2 shadow-sm mb-8">
             <div className="flex flex-col justify-between rounded-md p-6">
               <h2 className="text-2xl font-bold mb-2">我是谁 / Who</h2>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <Badge variant="default">Boy</Badge>
+                <Badge variant="secondary">19岁</Badge>
+                <Badge variant="info">广东人</Badge>
+                <Badge variant="success">INFP-T</Badge>
+                <Badge variant="outline">🏝️ 摆烂中</Badge>
+              </div>
               <p className="text-base text-muted-foreground">
                 Hi~ 我是 Yang，一名正在探索前端开发的大学生。<br />
                 喜欢折腾各种技术项目，热爱 Coding 和新挑战。
