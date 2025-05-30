@@ -128,9 +128,9 @@
           <section className="container max-w-2xl mx-auto py-12 md:py-20">
             <motion.div 
               className="mx-auto flex flex-col items-center space-y-4 text-center mb-10"
-              variants={fadeInUp}
-              initial="initial"
-              animate="animate"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
             >
               <h1 className="font-heading text-4xl md:text-6xl font-bold">Blog</h1>
               <p className="text-lg text-muted-foreground max-w-xl">

@@ -39,6 +39,15 @@ export default function BlogDetailPage() {
   const [loading, setLoading] = useState(true)
   const [commentForm, setCommentForm] = useState({ author: '', mail: '', text: '' })
   const [submitting, setSubmitting] = useState(false)
+  const [showScrollTop, setShowScrollTop] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   useEffect(() => {
     Promise.all([
@@ -76,7 +85,12 @@ export default function BlogDetailPage() {
       <Navbar />
       <main className="flex-1">
         <article className="container max-w-2xl mx-auto py-8 md:py-12">
-          <div className="mb-6">
+          <motion.div
+            className="mb-6"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             <div className="flex flex-wrap gap-2 mb-2">
               {post.tag && post.tag.map((t, i) => (
                 <span key={i} className="px-2 py-0.5 rounded bg-primary/10 text-primary text-xs">{t.name}</span>
@@ -92,10 +106,15 @@ export default function BlogDetailPage() {
               <span>·</span>
               <span>{getReadTime(post.text)} 分钟阅读</span>
             </div>
-          </div>
-          <div className="mb-10">
+          </motion.div>
+          <motion.div
+            className="mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             <MarkdownRender content={post.text} />
-          </div>
+          </motion.div>
           <section className="mt-12">
             <h2 className="text-2xl font-bold mb-4">评论</h2>
             <div className="relative overflow-hidden rounded-lg border bg-background p-2 mb-8 shadow-sm">
