@@ -49,11 +49,18 @@ const friends: Friend[] = [
     color: "#66c18c"
   },
   {
+    name: "深海小涛",
+    url: "https://xtao.de",
+    description: "又一个垃圾技术博客",
+    avatar: "https://blog.xtao.de/img/avatar.jpg",
+    color: "#2775B6"
+    },
+  {
     name: "添加友链",
     url: "/friends/add",
     description: "点我添加友链",
     avatar: "https://q.qlogo.cn/g?b=qq&nk=2958445350&s=100",
-    color: "#000000"
+    color: "#9eccab"
   }
 ]
 

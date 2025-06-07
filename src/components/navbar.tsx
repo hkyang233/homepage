@@ -54,22 +54,22 @@ export function Navbar() {
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <Link href="/" className={navigationMenuTriggerStyle()}>
+                  <Link href="/" className={navigationMenuTriggerStyle() + " bg-transparent hover:bg-accent/50 transition-colors"}>
                     MAIN
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link href="/blog" className={navigationMenuTriggerStyle()}>
+                  <Link href="/blog" className={navigationMenuTriggerStyle() + " bg-transparent hover:bg-accent/50 transition-colors"}>
                     BLOG
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link href="/friends" className={navigationMenuTriggerStyle()}>
+                  <Link href="/friends" className={navigationMenuTriggerStyle() + " bg-transparent hover:bg-accent/50 transition-colors"}>
                     LINKS
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link href="/about" className={navigationMenuTriggerStyle()}>
+                  <Link href="/about" className={navigationMenuTriggerStyle() + " bg-transparent hover:bg-accent/50 transition-colors"}>
                     ABOUT
                   </Link>
                 </NavigationMenuItem>
