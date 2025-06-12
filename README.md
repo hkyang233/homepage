@@ -55,7 +55,7 @@
 
 ## 📖 相关链接
 
-- [myblog](https://hkyang233.com)
+- [myblog](https://kaeshi.top/)
 - [Shadcn/ui](https://ui.shadcn.com/)
 - [Next.js](https://nextjs.org/)
 
