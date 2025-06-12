@@ -2,6 +2,7 @@
 import { Navbar } from '@/components/navbar'
 import { Badge } from '@/components/ui/badge'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -104,6 +105,39 @@ export default function AboutPage() {
                     <li>AutoCAD / Revit ...</li>
                   </ul>
                 </motion.div>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Todo 链接 */}
+          <motion.div
+            className="relative overflow-hidden rounded-lg border bg-background p-2 shadow-sm mb-8"
+            variants={fadeInUp}
+            initial="initial"
+            animate="animate"
+            transition={{ delay: 0.3 }}
+          >
+            <div className="flex flex-col justify-between rounded-md p-6">
+              <h2 className="text-2xl font-bold mb-2">我的目标 / Todo</h2>
+              <motion.p 
+                className="text-base text-muted-foreground mb-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+              >
+                记录一些想要完成的小目标，努力实现它们。
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+              >
+                <Link 
+                  href="/todo" 
+                  className="inline-flex items-center text-primary hover:underline"
+                >
+                  查看我的目标清单 →
+                </Link>
               </motion.div>
             </div>
           </motion.div>

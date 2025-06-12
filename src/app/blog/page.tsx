@@ -57,7 +57,7 @@
             created: Number(item.created),
             author: { screenName: item.author?.[0]?.screenName || '' },
           }))
-          setPosts(prev => page === 1 ? newPosts : [...prev, ...newPosts])
+          setPosts(newPosts)
           setHasMore(newPosts.length === PAGE_SIZE)
           setLoading(false)
           // 如果后端有 total 字段
