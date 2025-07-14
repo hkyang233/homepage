@@ -97,7 +97,7 @@ export default function TodoPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="font-heading text-4xl md:text-6xl font-bold">2025 TODO</h1>
+            <h1 className="font-heading text-4xl md:text-6xl font-bold">TODO</h1>
             <p className="text-lg text-muted-foreground max-w-xl">
               一些小目标
             </p>
@@ -173,8 +173,8 @@ export default function TodoPage() {
           </motion.div>
         </section>
       </main>
-      <motion.footer 
-        className="border-t py-6 md:py-0"
+      <motion.footer
+        className="py-6 md:py-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8 }}

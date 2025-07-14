@@ -8,13 +8,13 @@ import { Toaster } from "@/components/ui/sonner"
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Yang's Homepage",
-  description: "Yang's Homepage",
+  title: "Yang's Space",
+  description: "Yang's Space",
   keywords: ["Next.js", "React", "TypeScript", "个人主页", "博客"],
   authors: [{ name: "yang" }],
   openGraph: {
-    title: "Yang's Homepage",
-    description: "Yang's Homepage",
+    title: "Yang's Space",
+    description: "Yang's Space",
     type: "website",
   },
 };

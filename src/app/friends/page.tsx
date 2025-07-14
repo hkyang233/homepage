@@ -1,8 +1,8 @@
 'use client'
 
 import { Navbar } from "@/components/navbar"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { motion } from "framer-motion"
+import React, { useState } from "react"
 
 interface Friend {
   name: string
@@ -30,15 +30,15 @@ const friends: Friend[] = [
   {
     name: "小丁的屋舍",
     url: "https://xding.top/",
-    description: "https://xding.top/face.png",
+    description: "谈笑有鸿儒，往来无白丁",
     avatar: "https://xding.top/face.png",
     color: "#009688"
   },
   {
     name: "fly6022",
-    url: "https://fly6022.fun/",
+    url: "https://kuri.ink/",
     description: "Salvation lies within.",
-    avatar: "https://imageurl.fly6022.fun/images/logo.png",
+    avatar: "https://imageurl.kuri.ink/images/logo.png",
     color: "#8bbdec"
   },
   {
@@ -56,11 +56,18 @@ const friends: Friend[] = [
     color: "#2775B6"
     },
   {
+    name: "酷丁的主页",
+    url: "https://coldin.top",
+    description: "一个羞涩的小朋友的自我介绍页面",
+    avatar: "https://coldin.top/avatar.png",
+    color: "#28a745"
+  },
+  {
     name: "添加友链",
     url: "/friends/add",
     description: "点我添加友链",
     avatar: "https://q.qlogo.cn/g?b=qq&nk=2958445350&s=100",
-    color: "#9eccab"
+    color: "#f0a1a8"
   }
 ]
 
@@ -127,14 +134,7 @@ export default function FriendsPage() {
                     borderColor: friend.color,
                   }}
                 >
-                  <motion.img
-                    src={friend.avatar}
-                    alt={friend.name}
-                    className="h-16 w-16 rounded-full border-2"
-                    style={{ borderColor: friend.color }}
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  />
+                  <AvatarWithFallback friend={friend} />
                   <div className="ml-4 flex-1">
                     <motion.div 
                       className="font-bold text-lg"
@@ -159,8 +159,8 @@ export default function FriendsPage() {
           </motion.div>
         </section>
       </main>
-      <motion.footer 
-        className="border-t py-6 md:py-0"
+      <motion.footer
+        className="py-6 md:py-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8 }}
@@ -190,5 +190,33 @@ export default function FriendsPage() {
         </div>
       </motion.footer>
     </div>
+  )
+} 
+
+function AvatarWithFallback({ friend }: { friend: Friend }) {
+  const [error, setError] = useState(false)
+  const firstChar = friend.name.charAt(0)
+  if (error) {
+    return (
+      <motion.div
+        className="h-16 w-16 rounded-full flex items-center justify-center text-2xl font-bold border-2 select-none"
+        style={{ background: friend.color + '33', color: friend.color, borderColor: friend.color }}
+        whileHover={{ scale: 1.1 }}
+        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+      >
+        {firstChar}
+      </motion.div>
+    )
+  }
+  return (
+    <motion.img
+      src={friend.avatar}
+      alt={friend.name}
+      className="h-16 w-16 rounded-full border-2 object-cover"
+      style={{ borderColor: friend.color }}
+      onError={() => setError(true)}
+      whileHover={{ scale: 1.1 }}
+      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+    />
   )
 } 

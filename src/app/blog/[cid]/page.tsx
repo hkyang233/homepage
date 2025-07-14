@@ -13,6 +13,7 @@ import remarkGfm from "remark-gfm"
 import "highlight.js/styles/github-dark.css"
 import LoadingSpinner from '@/components/loading-spinner'
 import { toast } from "sonner"
+import { Skeleton } from '@/components/ui/skeleton'
 
 interface Post {
   cid: number
@@ -548,7 +549,68 @@ export default function BlogDetailPage() {
     return Math.max(1, Math.round(words / 300))
   }
 
-  if (loading) return <LoadingSpinner />
+  if (loading) return (
+    <div className="flex min-h-screen flex-col">
+      <Navbar />
+      <main className="flex-1">
+        <article className="container max-w-2xl mx-auto py-8 md:py-12">
+          <div className="mb-6">
+            <div className="flex flex-wrap gap-2 mb-2">
+              {[1,2,3].map(i => (
+                <Skeleton key={i} className="w-12 h-5 rounded bg-primary/10" />
+              ))}
+            </div>
+            <Skeleton className="h-10 w-3/4 mb-2" />
+            <div className="flex flex-wrap gap-2 items-center text-xs text-muted-foreground mb-2">
+              <Skeleton className="h-4 w-16" />
+              <Skeleton className="h-4 w-4" />
+              <Skeleton className="h-4 w-12" />
+              <Skeleton className="h-4 w-4" />
+              <Skeleton className="h-4 w-16" />
+              <Skeleton className="h-4 w-4" />
+              <Skeleton className="h-4 w-20" />
+            </div>
+          </div>
+          <div className="mb-10 space-y-4">
+            {[...Array(5)].map((_, i) => (
+              <Skeleton key={i} className="h-5 w-full" />
+            ))}
+            <Skeleton className="h-5 w-2/3" />
+            <Skeleton className="h-5 w-1/2" />
+          </div>
+          <section className="mt-12">
+            <div className="space-y-6">
+              <Skeleton className="h-6 w-24 mb-2" />
+              {/* 评论表单骨架 */}
+              <div className="rounded-lg border bg-card p-4 space-y-3">
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <Skeleton className="h-9 w-full" />
+                  <Skeleton className="h-9 w-full" />
+                </div>
+                <Skeleton className="h-20 w-full" />
+                <Skeleton className="h-9 w-32" />
+              </div>
+              {/* 评论列表骨架 */}
+              {[...Array(2)].map((_, i) => (
+                <div key={i} className="flex gap-3">
+                  <Skeleton className="w-8 h-8 rounded-full" />
+                  <div className="flex-1 space-y-2">
+                    <Skeleton className="h-4 w-24" />
+                    <Skeleton className="h-4 w-1/2" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        </article>
+      </main>
+      <footer className="py-6 md:py-0">
+        <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+          <Skeleton className="h-4 w-64" />
+        </div>
+      </footer>
+    </div>
+  )
   if (!post) return <div className="text-center py-10">文章不存在或数据结构不符</div>
 
   return (
@@ -595,7 +657,7 @@ export default function BlogDetailPage() {
           </section>
         </article>
       </main>
-      <footer className="border-t py-6 md:py-0">
+      <footer className="py-6 md:py-0">
         <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
           <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
             Built by{" "}

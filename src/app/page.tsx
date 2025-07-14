@@ -10,15 +10,15 @@ export default function Home() {
       <main className="flex-1 flex flex-col items-center justify-center">
         <Hero />
         <div className="flex flex-wrap gap-4 justify-center mt-8">
-          <a href="https://github.com/hkyang233" target="_blank" rel="noreferrer">
-            <Button variant="outline" className="px-6 text-base">GitHub</Button>
-          </a>
+        <Link href="/photo">
+            <Button variant="outline" className="px-6 text-base">Photo</Button>
+          </Link>
           <Link href="/blog">
             <Button variant="outline" className="px-6 text-base">Blog</Button>
           </Link>
         </div>
       </main>
-      <footer className="border-t py-6 md:py-0">
+      <footer className="py-6 md:py-0">
         <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
           <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
             Built by{" "}

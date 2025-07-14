@@ -27,7 +27,7 @@ export function Navbar() {
   const { setTheme, theme } = useTheme()
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center">
         <div className="flex md:hidden mr-2">
           <Drawer>
@@ -48,7 +48,7 @@ export function Navbar() {
         </div>
         <div className="mr-4 flex items-center">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="font-bold">Yang's Homepage</span>
+            <span className="font-bold">Yang's Space</span>
           </Link>
           <nav className="hidden md:block">
             <NavigationMenu>

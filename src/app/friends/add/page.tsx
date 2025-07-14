@@ -626,7 +626,7 @@ export default function FriendsAddPage() {
         </section>
       </main>
       <motion.footer 
-        className="border-t py-6 md:py-0"
+        className="py-6 md:py-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8 }}

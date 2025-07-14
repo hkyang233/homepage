@@ -193,8 +193,8 @@ export default function AboutPage() {
           </motion.div>
         </section>
       </main>
-      <motion.footer 
-        className="border-t py-6 md:py-0"
+      <motion.footer
+        className="py-6 md:py-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8 }}
