@@ -1,4 +1,4 @@
-  'use client'
+'use client'
   import { useEffect, useState, useRef } from 'react'
   import Link from 'next/link'
   import { Navbar } from "@/components/navbar"
@@ -154,43 +154,42 @@
                 </motion.div>
               ) : (
                 posts.map((post, idx) => (
-                  <motion.div
-                    key={post.cid}
-                    variants={cardVariants}
-                    whileHover={{ y: -4, boxShadow: '0 4px 24px 0 rgba(0,0,0,0.08)' }}
-                    className="group bg-card rounded-lg border shadow-sm px-6 py-5 transition-all duration-200 cursor-pointer"
-                  >
-                    <div className="flex flex-wrap gap-2 mb-2">
-                      {post.tag && post.tag.map((t, i) => (
-                        <span 
-                          key={i} 
-                          className="px-2 py-0.5 rounded bg-primary/10 text-primary text-xs"
-                        >
-                          {t.name}
-                        </span>
-                      ))}
-                    </div>
-                    <Link href={`/blog/${post.cid}`}>
+                  <Link key={post.cid} href={`/blog/${post.cid}`}>
+                    <motion.div
+                      variants={cardVariants}
+                      whileHover={{ y: -4, boxShadow: '0 4px 24px 0 rgba(0,0,0,0.08)' }}
+                      className="group bg-card rounded-lg border shadow-sm px-6 py-5 transition-all duration-200 cursor-pointer"
+                    >
+                      <div className="flex flex-wrap gap-2 mb-2">
+                        {post.tag && post.tag.map((t, i) => (
+                          <span 
+                            key={i} 
+                            className="px-2 py-0.5 rounded bg-primary/10 text-primary text-xs"
+                          >
+                            {t.name}
+                          </span>
+                        ))}
+                      </div>
                       <h2 
                         className="text-xl font-bold mb-1 group-hover:text-primary group-hover:underline transition-colors"
                       >
                         {post.title}
                       </h2>
-                    </Link>
-                    <div className="flex flex-wrap gap-2 items-center text-xs text-muted-foreground mb-2">
-                      <span>{new Date(post.created * 1000).toLocaleDateString()}</span>
-                      <span>·</span>
-                      <span>by {post.author.screenName}</span>
-                      <span>·</span>
-                    <span>{post.directory}</span>
-                    <span>·</span>
-                    <span>{getReadTime(post.text)} 分钟阅读</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground line-clamp-2">
-                    {post.text.replace(/<[^>]+>/g, '').slice(0, 80)}...
-                  </p>
-                </motion.div>
-              ))
+                      <div className="flex flex-wrap gap-2 items-center text-xs text-muted-foreground mb-2">
+                        <span>{new Date(post.created * 1000).toLocaleDateString()}</span>
+                        <span>·</span>
+                        <span>by {post.author.screenName}</span>
+                        <span>·</span>
+                        <span>{post.directory}</span>
+                        <span>·</span>
+                        <span>{getReadTime(post.text)} 分钟阅读</span>
+                      </div>
+                      <p className="text-sm text-muted-foreground line-clamp-2">
+                        {post.text.replace(/<[^>]+>/g, '').slice(0, 80)}...
+                      </p>
+                    </motion.div>
+                  </Link>
+                ))
             )}
           </motion.div>
           <motion.div
@@ -234,4 +233,4 @@
       </motion.footer>
     </div>
   )
-} 
+}

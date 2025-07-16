@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Navbar } from "@/components/navbar";
 import { motion, useInView } from "framer-motion";
 import { Camera, Calendar, Tag, Eye, ArrowRight } from "lucide-react";
+import LoadingSpinner from "@/components/loading-spinner";
 
 interface Photo {
   id: number;
@@ -81,17 +82,9 @@ export default function PhotoPage() {
             animate={isInView ? "animate" : "initial"}
           >
             {loading ? (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                className="flex justify-center items-center h-40"
-              >
-                <div className="text-center">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-                  <p className="text-muted-foreground">加载中...</p>
-                </div>
-              </motion.div>
+              <div className="flex justify-center items-center py-16">
+                <LoadingSpinner />
+              </div>
             ) : (
               photos.map((photo) => (
                 <motion.div
@@ -113,12 +106,7 @@ export default function PhotoPage() {
                         {/* 渐变遮罩 */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         
-                        {/* 悬停图标 */}
-                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                          <div className="bg-white/90 backdrop-blur-sm rounded-full p-2 shadow-lg">
-                            <Eye className="w-4 h-4 text-gray-700" />
-                          </div>
-                        </div>
+
                         
                         {/* 标签覆盖层 */}
                         {photo.tags && photo.tags.length > 0 && (
@@ -172,7 +160,7 @@ export default function PhotoPage() {
                             </span>
                           </div>
                           
-                          <span className="text-xs text-primary font-medium group-hover:underline">
+                          <span className="text-xs text-primary font-medium group-hover:underline opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             查看详情
                           </span>
                         </div>
@@ -225,4 +213,4 @@ export default function PhotoPage() {
       </footer>
     </div>
   );
-} 
+}

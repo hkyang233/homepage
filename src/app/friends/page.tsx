@@ -28,6 +28,13 @@ const friends: Friend[] = [
     color: "#fcc307"
   },
   {
+    name: "Tianiel's Blog",
+    url: "https://tianiel.top",
+    description: "For Super Earth!",
+    avatar: "https://q1.qlogo.cn/g?b=qq&nk=615207910&s=640",
+    color: "#1772b4"
+  },
+  {
     name: "小丁的屋舍",
     url: "https://xding.top/",
     description: "谈笑有鸿儒，往来无白丁",
