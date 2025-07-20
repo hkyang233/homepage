@@ -1,11 +1,31 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { Toaster } from "@/components/ui/sonner"
 
-const inter = Inter({ subsets: ["latin"] });
+const geist = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Geist[wght].woff2",
+      style: "normal",
+    },
+  ],
+  variable: "--font-geist",
+  display: "swap",
+});
+
+const geistMono = localFont({
+  src: [
+    {
+      path: "../../public/fonts/GeistMono[wght].woff2",
+      style: "normal",
+    },
+  ],
+  variable: "--font-geist-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Yang's Space",
@@ -26,7 +46,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${geist.variable} ${geistMono.variable} font-sans`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
