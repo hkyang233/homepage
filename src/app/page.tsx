@@ -127,7 +127,7 @@ export default function Home() {
           <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
             Built by{" "}
         <a
-              href="https://github.com/hkyang233"
+              href="https://github.com/Kaehei"
           target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
@@ -136,7 +136,7 @@ export default function Home() {
             </a>
             . The source code is available on{" "}
             <a
-              href="https://github.com/hkyang233/homepage"
+              href="https://github.com/Kaehei/homepage"
           target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"

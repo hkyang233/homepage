@@ -183,7 +183,7 @@ export default function AboutPage() {
                 animate="animate"
               >
                 <motion.li variants={fadeInUp}>
-                  GitHub: <a href="https://github.com/hkyang233" className="text-primary hover:underline" target="_blank" rel="noreferrer">hkyang233</a>
+                  GitHub: <a href="https://github.com/Kaehei" className="text-primary hover:underline" target="_blank" rel="noreferrer">Kaehei</a>
                 </motion.li>
                 <motion.li variants={fadeInUp}>
                   Email: <a href="mailto:beitqwq@icloud.com" className="text-primary hover:underline">beitqwq@icloud.com</a>
@@ -203,7 +203,7 @@ export default function AboutPage() {
           <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
             Built by{" "}
             <a
-              href="https://github.com/hkyang233"
+              href="https://github.com/Kaehei"
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
@@ -212,7 +212,7 @@ export default function AboutPage() {
             </a>
             . The source code is available on{" "}
             <a
-              href="https://github.com/hkyang233/homepage"
+              href="https://github.com/Kaehei/homepage"
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
