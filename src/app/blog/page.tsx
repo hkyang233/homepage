@@ -4,6 +4,15 @@
   import { Navbar } from "@/components/navbar"
   import { motion, useInView } from 'framer-motion'
   import LoadingSpinner from "@/components/loading-spinner"
+  import {
+    Pagination,
+    PaginationContent,
+    PaginationEllipsis,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+  } from "@/components/ui/pagination"
 
   interface Post {
     cid: number
@@ -84,34 +93,39 @@
         }
       }
       return (
-        <div className="flex justify-center items-center gap-2 mt-8 select-none">
-          <button
-            className="px-3 py-1 rounded border text-sm bg-white dark:bg-zinc-900 hover:bg-primary/10 transition disabled:opacity-50"
-            disabled={page === 1}
-            onClick={() => setPage(p => Math.max(1, p - 1))}
-          >上一页</button>
-          {pages.map((p, i) =>
-            typeof p === 'number' ? (
-              <button
-                key={p}
-                className={`px-3 py-1 rounded border text-sm transition
-                  ${p === page
-                    ? 'bg-primary text-white border-primary'
-                    : 'bg-white dark:bg-zinc-900 hover:bg-primary/10 border'}
-                `}
-                onClick={() => setPage(p)}
-                disabled={p === page}
-              >{p}</button>
-            ) : (
-              <span key={i} className="px-2 text-muted-foreground">...</span>
-            )
-          )}
-          <button
-            className="px-3 py-1 rounded border text-sm bg-white dark:bg-zinc-900 hover:bg-primary/10 transition disabled:opacity-50"
-            disabled={page === maxPage || !hasMore}
-            onClick={() => setPage(p => p + 1)}
-          >下一页</button>
-        </div>
+        <Pagination className="mt-8">
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious 
+                onClick={() => setPage(p => Math.max(1, p - 1))}
+                className={page === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+              />
+            </PaginationItem>
+            {pages.map((p, i) =>
+              typeof p === 'number' ? (
+                <PaginationItem key={p}>
+                  <PaginationLink
+                    onClick={() => setPage(p)}
+                    isActive={p === page}
+                    className="cursor-pointer"
+                  >
+                    {p}
+                  </PaginationLink>
+                </PaginationItem>
+              ) : (
+                <PaginationItem key={i}>
+                  <PaginationEllipsis />
+                </PaginationItem>
+              )
+            )}
+            <PaginationItem>
+              <PaginationNext 
+                onClick={() => setPage(p => p + 1)}
+                className={(page === maxPage || !hasMore) ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       )
     }
 
@@ -234,4 +248,4 @@
       </motion.footer>
     </div>
   )
-} 
+}
