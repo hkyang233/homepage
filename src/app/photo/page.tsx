@@ -93,7 +93,7 @@ export default function PhotoPage() {
                   whileHover={{ y: -4, boxShadow: '0 4px 24px 0 rgba(0,0,0,0.08)' }}
                   className="group bg-card rounded-xl border shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer overflow-hidden"
                 >
-                  <Link href={`/photo/info?id=${photo.id}`} className="block">
+                  <Link href={`/photo/${photo.id}`} className="block">
                     <div className="flex flex-col lg:flex-row">
                       {/* 图片区域 */}
                       <div className="relative lg:w-2/5 h-64 lg:h-48 overflow-hidden">

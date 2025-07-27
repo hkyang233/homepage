@@ -1,5 +1,5 @@
- "use client";
-import { useSearchParams } from 'next/navigation';
+"use client";
+import { useParams } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
@@ -30,8 +30,8 @@ const fadeInUp = {
 };
 
 export default function PhotoInfoContent() {
-  const params = useSearchParams();
-  const id = params.get('id') || '1';
+  const params = useParams();
+  const id = (params.id as string) || '1';
   const [photo, setPhoto] = useState<PhotoData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -275,4 +275,4 @@ export default function PhotoInfoContent() {
       </section>
     </main>
   );
-} 
+}

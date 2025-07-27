@@ -2,29 +2,7 @@
 import { Suspense } from "react";
 import { Navbar } from '@/components/navbar';
 import LoadingSpinner from '@/components/loading-spinner';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { useSearchParams } from 'next/navigation';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Badge } from '@/components/ui/badge';
-import { motion } from 'framer-motion';
-import { Eye } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { Fancybox } from '@fancyapps/ui';
-import '@fancyapps/ui/dist/fancybox/fancybox.css';
 import PhotoInfoContent from '@/components/PhotoInfoContent';
-
-interface PhotoData {
-  id: string;
-  title: string;
-  description: string;
-  image_url: string;
-  thumbnail_url: string;
-  exif: Record<string, string>;
-  tags: string[];
-  created_at: string;
-}
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -32,7 +10,7 @@ const fadeInUp = {
   transition: { duration: 0.5 }
 }
 
-export default function PhotoInfoPage() {
+export default function PhotoDetailPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
@@ -66,4 +44,4 @@ export default function PhotoInfoPage() {
       </footer>
     </div>
   );
-} 
+}
